@@ -1,0 +1,28 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    apply from: './versions.gradle'
+    addRepos(repositories) //增加代码仓库
+    dependencies {
+        classpath deps.android_gradle_plugin
+        classpath deps.android_maven_gradle_plugin
+
+        classpath "com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.2.8"
+    }
+}
+
+allprojects {
+    addRepos(repositories)
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

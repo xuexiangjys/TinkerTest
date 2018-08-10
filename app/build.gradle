@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        applicationId "com.xuexiang.tinkertest"
+        minSdkVersion 14
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        multiDexEnabled true
+        multiDexKeepProguard file("tinkerMultidexKeep.pro") //keep specific classes using proguard syntax
+
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(app_release.storeFile)
+            storePassword app_release.storePassword
+            keyAlias app_release.keyAlias
+            keyPassword app_release.keyPassword
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
+            proguardFiles 'proguardRules.pro', getDefaultProguardFile('proguard-android.txt')
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+
+    implementation 'com.android.support:multidex:1.0.3'
+    //若使用annotation需要单独引用,对于tinker的其他库都无需再引用
+    annotationProcessor 'com.tinkerpatch.tinker:tinker-android-anno:1.9.8'
+    compileOnly 'com.tinkerpatch.tinker:tinker-android-anno:1.9.8'
+    implementation 'com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.2.8'
+
+    implementation 'com.github.xuexiangjys.XUtil:xutil-core:1.1.4'
+}
+
+apply from: 'tinkerpatch.gradle'
