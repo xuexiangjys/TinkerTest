@@ -7,9 +7,9 @@
 
 ## 演示demo下载
 
-[![](https://img.shields.io/badge/演示apk-1M-blue.svg)](https://github.com/xuexiangjys/XUpdate/blob/master/apk/app-release.apk)
+[![](https://img.shields.io/badge/演示apk-1M-blue.svg)](https://github.com/xuexiangjys/TinkerTest/blob/master/apk/app-release.apk)
 
-[![](https://img.shields.io/badge/补丁包-4K-blue.svg)](https://github.com/xuexiangjys/XUpdate/blob/master/apk/patch_signed_7zip.apk)
+[![](https://img.shields.io/badge/补丁包-4K-blue.svg)](https://github.com/xuexiangjys/TinkerTest/blob/master/apk/patch_signed_7zip.apk)
 
 
 ## Tinker简介
