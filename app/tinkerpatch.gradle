@@ -4,6 +4,7 @@ apply plugin: 'tinkerpatch-support'
  * TODO: 请按自己的需求修改为适应自己工程的参数
  */
 def bakPath = file("${buildDir}/bakApk/")
+/** 每次在打补丁包的时候，需要更新这里的旧包的位置  **/
 def baseInfo = "app-1.0.0-0810-17-28-31"
 def variantName = "release"
 
