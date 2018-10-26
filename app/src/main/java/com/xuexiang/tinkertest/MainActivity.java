@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
+import com.tinkerpatch.sdk.TinkerPatch;
 import com.xuexiang.tinkertest.util.ReopenAppUtils;
 import com.xuexiang.xaop.annotation.Permission;
 import com.xuexiang.xutil.app.ActivityUtils;
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_reopen:
                 ReopenAppUtils.reopenApp(this);
+                break;
+            case R.id.btn_check_update:
+                TinkerPatch.with().fetchPatchUpdate(true);
                 break;
             default:
                 break;
