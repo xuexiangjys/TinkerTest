@@ -323,7 +323,7 @@ public class App extends Application {
 
 需要注意的是，执行热更新后，需要重启程序才能生效！
 
-## 如何使用Tinker Platform进行热修复
+## 如何使用Tinker Platform进行补丁管理
 
 ### 补丁发布
 
