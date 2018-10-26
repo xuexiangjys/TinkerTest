@@ -8,9 +8,12 @@ import android.view.View;
 
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
 import com.xuexiang.tinkertest.util.ReopenAppUtils;
+import com.xuexiang.xaop.annotation.Permission;
 import com.xuexiang.xutil.app.ActivityUtils;
 import com.xuexiang.xutil.app.IntentUtils;
 import com.xuexiang.xutil.app.PathUtils;
+
+import static com.xuexiang.xaop.consts.PermissionConsts.STORAGE;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -25,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_fix:
-                ActivityUtils.startActivityForResult(this, IntentUtils.getDocumentPickerIntent(IntentUtils.DocumentType.ANY), REQUEST_CODE_GET_PATCH_PACKAGE);
+                choosePatchApk();
                 break;
             case R.id.btn_reopen:
                 ReopenAppUtils.reopenApp(this);
@@ -33,6 +36,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
+    }
+
+    @Permission(STORAGE)
+    private void choosePatchApk() {
+        ActivityUtils.startActivityForResult(this, IntentUtils.getDocumentPickerIntent(IntentUtils.DocumentType.ANY), REQUEST_CODE_GET_PATCH_PACKAGE);
     }
 
     @Override

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.xuexiang.xaop'
 
 android {
     compileSdkVersion build_versions.target_sdk
@@ -6,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.xuexiang.tinkertest"
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
@@ -56,6 +57,7 @@ dependencies {
     implementation 'com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.2.8'
 
     implementation 'com.github.xuexiangjys.XUtil:xutil-core:1.1.4'
+    implementation 'com.github.xuexiangjys.XAOP:xaop-runtime:1.0.1'
 }
 
 apply from: 'tinkerpatch.gradle'

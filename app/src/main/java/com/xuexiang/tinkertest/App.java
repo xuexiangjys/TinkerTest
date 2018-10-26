@@ -7,6 +7,7 @@ import com.tencent.tinker.loader.app.ApplicationLike;
 import com.tinkerpatch.sdk.TinkerPatch;
 import com.tinkerpatch.sdk.loader.TinkerPatchApplicationLike;
 import com.tinkerpatch.sdk.tinker.callback.ResultCallBack;
+import com.xuexiang.xaop.XAOP;
 import com.xuexiang.xutil.XUtil;
 import com.xuexiang.xutil.tip.ToastUtils;
 
@@ -21,6 +22,7 @@ public class App extends Application {
         super.onCreate();
 
         XUtil.init(this);
+        XAOP.init(this);
 
         // 我们可以从这里获得Tinker加载过程的信息
         ApplicationLike tinkerApplicationLike = TinkerPatchApplicationLike.getTinkerPatchApplicationLike();

@@ -5,7 +5,7 @@ apply plugin: 'tinkerpatch-support'
  */
 def bakPath = file("${buildDir}/bakApk/")
 /** 每次在打补丁包的时候，需要更新这里的旧包的位置  **/
-def baseInfo = "app-1.0.0-0810-17-28-31"
+def baseInfo = "app-1.0.0-1026-11-10-05"
 def variantName = "release"
 
 def AppKey = "4c118de195c79b14"

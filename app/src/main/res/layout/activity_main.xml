@@ -12,7 +12,7 @@
         android:layout_marginBottom="20dp"
         android:gravity="center"
         android:textSize="18sp"
-        android:text="这里的bug已修复!" />
+        android:text="bug已被修复（重启生效)!" />
 
     <Button
         android:id="@+id/btn_fix"
