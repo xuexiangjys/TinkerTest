@@ -343,7 +343,7 @@ public class App extends Application {
 1.向后台获取是否有补丁包更新,默认的访问间隔为3个小时,若参数immediately为 true,即每次调用都会真正的访问后台是否有更新。
 
 ```
-TinkerPatch.with().fetchPatchUpdate(true);
+TinkerPatch.with().fetchPatchUpdate(true); //设置为true便立即主动去拉取补丁信息，并进行热更新。
 ```
 
 2.我们可以通过以下方法，设置访问的时间间隔，单位为小时。若为 －1，即禁止以后都不再请求后台补丁更新。
