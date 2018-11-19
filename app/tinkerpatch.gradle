@@ -48,7 +48,7 @@ tinkerpatchSupport {
 
     autoBackupApkPath = "${bakPath}"
 
-    def pathPrefix = "${bakPath}/${baseInfo}/${variantName}/"
+    def pathPrefix = "${bakPath}/${baseInfo}/${variantName}"
     def name = "${project.name}-${variantName}"
 
     baseApkFile = "${pathPrefix}/${name}.apk"
