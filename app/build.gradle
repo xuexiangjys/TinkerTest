@@ -13,8 +13,6 @@ android {
         versionName "1.0"
 
         multiDexEnabled true
-        multiDexKeepProguard file("tinkerMultidexKeep.pro") //keep specific classes using proguard syntax
-
     }
 
     signingConfigs {
@@ -44,20 +42,18 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation deps.support.app_compat
 
     implementation 'com.android.support:multidex:1.0.3'
-    //若使用annotation需要单独引用,对于tinker的其他库都无需再引用
-    annotationProcessor 'com.tinkerpatch.tinker:tinker-android-anno:1.9.8'
-    compileOnly 'com.tinkerpatch.tinker:tinker-android-anno:1.9.8'
-    implementation 'com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.2.8'
+    implementation 'com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.2.13'
 
-    implementation 'com.github.xuexiangjys.XUtil:xutil-core:1.1.4'
-    implementation 'com.github.xuexiangjys.XAOP:xaop-runtime:1.0.1'
+    implementation 'com.github.xuexiangjys.XUtil:xutil-core:1.1.5'
+    implementation 'com.github.xuexiangjys.XAOP:xaop-runtime:1.0.3'
 }
 
 apply from: 'tinkerpatch.gradle'

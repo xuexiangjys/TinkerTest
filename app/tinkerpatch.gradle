@@ -1,3 +1,6 @@
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 apply plugin: 'tinkerpatch-support'
 
 /**
@@ -17,16 +20,9 @@ def AppVersion = "1.0.0"
  */
 tinkerpatchSupport {
 
-    /** 可以在debug的时候关闭 tinkerPatch **/
-    /** 当disable tinker的时候需要添加multiDexKeepProguard和proguardFiles,
-        这些配置文件本身由tinkerPatch的插件自动添加，当你disable后需要手动添加
-        你可以copy本示例中的proguardRules.pro和tinkerMultidexKeep.pro,
-        需要你手动修改'tinker.sample.android.app'本示例的包名为你自己的包名, com.xxx前缀的包名不用修改
-     **/
-    tinkerEnable = true
-
+    /** 可以在debug的时候关闭 tinkerPatch, isRelease() 可以判断BuildType是否为Release **/
+    tinkerEnable = isRelease()
     /** 是否使用一键接入功能  **/
-
     reflectApplication = true
     /**
      * 是否开启加固模式，只能在APK将要进行加固时使用，否则会patch失败。
@@ -101,5 +97,32 @@ tinkerPatch {
     }
     buildConfig {
         keepDexApply = false
+    }
+}
+
+/**
+ * 如果只想在Release中打开tinker，可以把tinkerEnable赋值为这个函数的return
+ * @return 是否为release
+ */
+def isRelease() {
+    Gradle gradle = getGradle()
+    String  tskReqStr = gradle.getStartParameter().getTaskRequests().toString()
+
+    Pattern pattern
+    if (tskReqStr.contains("assemble")) {
+        println tskReqStr
+        pattern = Pattern.compile("assemble(\\w*)(Release|Debug)")
+    } else {
+        pattern = Pattern.compile("generate(\\w*)(Release|Debug)")
+    }
+    Matcher matcher = pattern.matcher(tskReqStr)
+
+    if (matcher.find()) {
+        String task = matcher.group(0).toLowerCase()
+        println("[BuildType] Current task: " + task)
+        return task.contains("release")
+    } else {
+        println "[BuildType] NO MATCH FOUND"
+        return true
     }
 }
