@@ -9,8 +9,8 @@ android {
         applicationId "com.xuexiang.tinkertest"
         minSdkVersion 19
         targetSdkVersion build_versions.target_sdk
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
 
         multiDexEnabled true
     }
@@ -29,12 +29,17 @@ android {
             minifyEnabled true
             shrinkResources true
             signingConfig signingConfigs.release
-            proguardFiles 'proguardRules.pro', getDefaultProguardFile('proguard-android.txt')
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
             debuggable true
             minifyEnabled false
         }
+    }
+
+    //recommend
+    dexOptions {
+        jumboMode = true
     }
 
     sourceSets {

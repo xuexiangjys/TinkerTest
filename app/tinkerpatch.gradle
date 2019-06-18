@@ -8,18 +8,17 @@ apply plugin: 'tinkerpatch-support'
  */
 def bakPath = file("${buildDir}/bakApk/")
 /** 每次在打补丁包的时候，需要更新这里的旧包的位置  **/
-def baseInfo = "app-1.0.0-1026-14-19-46"
+def baseInfo = "app-1.0.0-0618-14-41-26"
 def variantName = "release"
 
 def AppKey = "4c118de195c79b14"
-def AppVersion = "1.0.0"
+def AppVersion = "1.0.1"
 
 /**
  * 对于插件各参数的详细解析请参考
  * http://tinkerpatch.com/Docs/SDK
  */
 tinkerpatchSupport {
-
     /** 可以在debug的时候关闭 tinkerPatch, isRelease() 可以判断BuildType是否为Release **/
     tinkerEnable = isRelease()
     /** 是否使用一键接入功能  **/
@@ -50,11 +49,6 @@ tinkerpatchSupport {
     baseApkFile = "${pathPrefix}/${name}.apk"
     baseProguardMappingFile = "${pathPrefix}/${name}-mapping.txt"
     baseResourceRFile = "${pathPrefix}/${name}-R.txt"
-
-    /**
-     *  若有编译多flavors需求, 可以参照： https://github.com/TinkerPatch/tinkerpatch-flavors-sample
-     *  注意: 除非你不同的flavor代码是不一样的,不然建议采用zip comment或者文件方式生成渠道信息（相关工具：walle 或者 packer-ng）
-     **/
 }
 
 /**
@@ -72,7 +66,7 @@ android {
  * https://github.com/Tencent/tinker/wiki/Tinker-%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97
  */
 tinkerPatch {
-    ignoreWarning = false
+    ignoreWarning = true
     useSign = true
     dex {
         dexMode = "jar"

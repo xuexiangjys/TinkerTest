@@ -8,11 +8,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:textSize="18sp"
-        android:text="bug已修复！(锁屏或重启生效)" />
+        android:text="Bug已被修复！（重启或者锁屏后生效）" />
+
+    <TextView
+        android:id="@+id/tv_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="当前版本" />
 
     <Button
         android:id="@+id/btn_fix"

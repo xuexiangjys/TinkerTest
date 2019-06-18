@@ -59,14 +59,11 @@ buildscript {
 ```
 dependencies {
     implementation 'com.android.support:multidex:1.0.3'
-    //若使用annotation需要单独引用,对于tinker的其他库都无需再引用
-    annotationProcessor 'com.tinkerpatch.tinker:tinker-android-anno:1.9.8'
-    compileOnly 'com.tinkerpatch.tinker:tinker-android-anno:1.9.8'
-    implementation 'com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.2.8'
+    implementation 'com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.2.13'
 }
 ```
 
-3. 配置代码混淆和打包配置。其中tinkerMultidexKeep.pro和proguardRules.pro可参考我的demo工程。
+3. 配置代码混淆和打包配置。其中tinkerMultidexKeep.pro和proguard-rules.pro可选填。
 
 ```
 android {
@@ -80,7 +77,7 @@ android {
         versionName "1.0"
 
         multiDexEnabled true
-        multiDexKeepProguard file("tinkerMultidexKeep.pro") //keep specific classes using proguard syntax
+        //multiDexKeepProguard file("tinkerMultidexKeep.pro") //keep specific classes using proguard syntax
 
     }
 
@@ -99,7 +96,7 @@ android {
             minifyEnabled true
             shrinkResources true
             signingConfig signingConfigs.release
-            proguardFiles 'proguardRules.pro', getDefaultProguardFile('proguard-android.txt')
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
             debuggable true
@@ -159,13 +156,8 @@ def AppVersion = "1.0.0"
  */
 tinkerpatchSupport {
 
-    /** 可以在debug的时候关闭 tinkerPatch **/
-    /** 当disable tinker的时候需要添加multiDexKeepProguard和proguardFiles,
-        这些配置文件本身由tinkerPatch的插件自动添加，当你disable后需要手动添加
-        你可以copy本示例中的proguardRules.pro和tinkerMultidexKeep.pro,
-        需要你手动修改'tinker.sample.android.app'本示例的包名为你自己的包名, com.xxx前缀的包名不用修改
-     **/
-    tinkerEnable = true
+     /** 可以在debug的时候关闭 tinkerPatch, isRelease() 可以判断BuildType是否为Release **/
+    tinkerEnable = isRelease()
 
     /** 是否使用一键接入功能  **/
 
@@ -196,11 +188,6 @@ tinkerpatchSupport {
     baseApkFile = "${pathPrefix}/${name}.apk"
     baseProguardMappingFile = "${pathPrefix}/${name}-mapping.txt"
     baseResourceRFile = "${pathPrefix}/${name}-R.txt"
-
-    /**
-     *  若有编译多flavors需求, 可以参照： https://github.com/TinkerPatch/tinkerpatch-flavors-sample
-     *  注意: 除非你不同的flavor代码是不一样的,不然建议采用zip comment或者文件方式生成渠道信息（相关工具：walle 或者 packer-ng）
-     **/
 }
 
 /**
@@ -218,7 +205,7 @@ android {
  * https://github.com/Tencent/tinker/wiki/Tinker-%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97
  */
 tinkerPatch {
-    ignoreWarning = false
+    ignoreWarning = true
     useSign = true
     dex {
         dexMode = "jar"
