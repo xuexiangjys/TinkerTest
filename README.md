@@ -49,7 +49,7 @@ buildscript {
     ...
     dependencies {
         ...
-        classpath "com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.2.8"
+        classpath "com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:1.2.13"
     }
 }
 ```
